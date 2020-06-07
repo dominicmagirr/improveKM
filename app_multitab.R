@@ -14,8 +14,8 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(textAreaInput("arm_1_s", "Paste from WebPlotDigitizer"),
                             textAreaInput("arm_1_interval", "Interval length"),
-                            textAreaInput("arm_1_n_at_risk", "Number at risk", "68,62,55,47,44,33,27,21,16,12,11,6,3,1"),
-                            actionButton("do", "Click Me")),
+                            textAreaInput("arm_1_n_at_risk", "Number at risk (comma-separated)"),
+                            actionButton("do", "Run")),
                mainPanel(plotOutput("plot"),
                          numericInput("quantile", "Quantile", value = 0.5, min = 0, max = 1, step = 0.1),
                          textOutput("info_q"),
@@ -29,8 +29,8 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(textAreaInput("arm_2_s", "Paste from WebPlotDigitizer"),
                             textAreaInput("arm_2_interval", "Interval length"),
-                            textAreaInput("arm_2_n_at_risk", "Number at risk", "80,70,62,57,49,43,37,35,28,26,22,7,3"),
-                            actionButton("do_2", "Click Me")),
+                            textAreaInput("arm_2_n_at_risk", "Number at risk (comma-separated)"),
+                            actionButton("do_2", "Run")),
                mainPanel(plotOutput("plot_2"),
                          numericInput("quantile_2", "Quantile", value = 0.5, min = 0, max = 1, step = 0.1),
                          textOutput("info_q_2"),
@@ -106,7 +106,7 @@ server <- function(input, output) {
            "IPD_1.csv"
          },
          content = function(con) {
-           write.csv(IPD(), con)
+           write.csv(IPD(), con, row.names = FALSE)
          }
        )
     
@@ -164,7 +164,7 @@ server <- function(input, output) {
           "IPD_2.csv"
         },
         content = function(con) {
-          write.csv(IPD_2(), con)
+          write.csv(IPD_2(), con, row.names = FALSE)
         }
       )
       
@@ -200,7 +200,7 @@ server <- function(input, output) {
           "IPD_both.csv"
         },
         content = function(con) {
-          write.csv(IPD_both_df(), con)
+          write.csv(IPD_both_df(), con, row.names = FALSE)
         }
       )
       

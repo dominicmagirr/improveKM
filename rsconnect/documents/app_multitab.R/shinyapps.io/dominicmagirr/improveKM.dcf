@@ -1,0 +1,12 @@
+name: improveKM
+title: improveKM
+username:
+account: dominicmagirr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2420469
+bundleId: 3238170
+url: https://dominicmagirr.shinyapps.io/improveKM/
+when: 1591530620.09024
+asMultiple: FALSE
+asStatic: FALSE
